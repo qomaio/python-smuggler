@@ -96,7 +96,9 @@ def get(db_dict, key):
 
     if fameinfo.get('class') == pyhli.HSERIE:
         frng =  entry.get('fame').get('range')
+        print(frng)
         idx = to_pandas_range( frng )
+        print(idx)
         return pd.Series(data=entry.get('data'),index=idx,name=key)
 
     return entry.get('data')
@@ -288,38 +290,21 @@ def to_pandas_range(fame_range):
 
 def _to_pandas_datetime(fame_freq, date):
     '''convert FAME frequency and date to Pandas datetime'''
+    status = [-1]
     year = [-1]
     month = [-1]
     day = [-1]
-    hour = [-1]
-    minute = [-1]
-    second = [-1]
-    millisecond = [-1]
-    pyhli.fame_index_to_time(fame_freq, date, year, month, day, hour, minute,
-                             second, millisecond)
-    msec_date = [-1]
-    pyhli.fame_dateof(fame_freq, date, pyhli.HEND, pyhli.HMSEC, msec_date,
-                      pyhli.HCONT)
-    pyhli.fame_index_to_time(pyhli.HMSEC, msec_date[0], year, month, day, hour,
-                             minute, second, millisecond)
-    if fame_freq != pyhli.HMSEC:
-        millisecond[0] = 0
-        if fame_freq != pyhli.HSEC:
-            second[0] = 0
-            if fame_freq != pyhli.HMIN:
-                minute[0] = 0
-                if fame_freq != pyhli.HHOUR:
-                    hour[0] = 0
+    tgt_date = [-1]
+    pyhli.cfmchfr(status, fame_freq, date, pyhli.HEND, pyhli.HDAILY, tgt_date, pyhli.HCONT)
+    print("cfmchfr() status={0}\n".format(status[0]))
+    pyhli.cfmdatd(status, pyhli.HDAILY, tgt_date[0], year, month, day)
+    print("cfmdatd() status={0}\n".format(status[0]))
 
     return pd.to_datetime({
         'year': [year[0]],
         'month': [month[0]],
-        'day': [day[0]],
-        'hour': [hour[0]],
-        'minute': [minute[0]],
-        'second': [second[0]],
-        'ms': [millisecond[0]]
-    })[0]
+        'day': [day[0]]
+        })[0]
 
 
 def read_fame(dbname, wilnam="?", fame_range=None):
