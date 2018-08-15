@@ -1,0 +1,4 @@
+notebooks/.ipynb_checkpoints/
+build/
+dist/
+qoma_smuggler.egg-info/

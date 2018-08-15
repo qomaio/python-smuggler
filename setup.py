@@ -11,5 +11,5 @@ setup(name='qoma_smuggler',
         author_email='info@qoma.io',
         url='http://github.com/qomaio',
         license='AGPLv3',
-        platforms=['any']
-)
+        platforms=['any'],
+        include_package_data=True)
