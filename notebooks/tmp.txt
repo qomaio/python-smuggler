@@ -1,0 +1,18 @@
+
+
+                                  GDP
+
+                        GROSS DOMESTIC PRODUCT
+
+Class:  SERIES                                     DB name:  MYCOPY
+Type:   PRECISION                                  Created:  15-Aug-18
+Index:  DATE:ANNUAL                                Updated:  15-Aug-18
+
+First Value at: 1929                               Observed: AVERAGED
+Last Value at:  2002                               Basis:    DAILY
+
+GROSS DOMESTIC PRODUCT
+BILLIONS OF CURRENT DOLLARS
+U.S. DEPARTMENT OF COMMERCE, BUREAU OF ECONOMIC ANALYSIS
+'SURVEY OF CURRENT BUSINESS' AND OTHER MATERIALS
+U.S. NATIONAL INCOME & PRODUCT ACCOUNTS - TABLE 1.1,1.3,1.5,1.9
