@@ -1,6 +1,7 @@
 from setuptools import setup
 
 setup(name='qoma_smuggler',
+        python_requires='>=3.6.5',
         scripts=['scripts/smuggler_test.py'],    
         version='0.0.1',
         py_modules= ['qoma_smuggler'],
