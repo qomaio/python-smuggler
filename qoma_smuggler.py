@@ -96,9 +96,7 @@ def get(db_dict, key):
 
     if fameinfo.get('class') == pyhli.HSERIE:
         frng =  entry.get('fame').get('range')
-        print(frng)
         idx = to_pandas_range( frng )
-        print(idx)
         return pd.Series(data=entry.get('data'),index=idx,name=key)
 
     return entry.get('data')
@@ -296,9 +294,7 @@ def _to_pandas_datetime(fame_freq, date):
     day = [-1]
     tgt_date = [-1]
     pyhli.cfmchfr(status, fame_freq, date, pyhli.HEND, pyhli.HDAILY, tgt_date, pyhli.HCONT)
-    print("cfmchfr() status={0}\n".format(status[0]))
     pyhli.cfmdatd(status, pyhli.HDAILY, tgt_date[0], year, month, day)
-    print("cfmdatd() status={0}\n".format(status[0]))
 
     return pd.to_datetime({
         'year': [year[0]],
@@ -351,8 +347,8 @@ def read_fame(dbname, wilnam="?", fame_range=None):
                             1024, outdesclen, doc,
                             1024, outdoclen)
 
-            meta_dict['desc'] = desc[0]
-            meta_dict['docu'] = doc[0]
+            meta_dict['desc'] = desc[0].strip()
+            meta_dict['docu'] = doc[0].strip()
             if _class[0] == pyhli.HSERIE:
                 rng = [_freq[0], findex[0],
                        lindex[0]] if fame_range is None else fame_range
