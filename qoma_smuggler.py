@@ -204,11 +204,7 @@ PANDAS_FREQ = {
     pyhli.HMONTH: 'M',
     pyhli.HWKFRI: 'W-FRI',
     pyhli.HBUSNS: 'B',
-    pyhli.HDAILY: 'D',
-    pyhli.HHOUR: 'H',
-    pyhli.HMIN: 'T',
-    pyhli.HSEC: 'S',
-    pyhli.HMSEC: 'L'
+    pyhli.HDAILY: 'D'
 }
 
 FAME_FREQ = {'W': pyhli.HWKFRI}
