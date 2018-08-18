@@ -64,10 +64,12 @@ def print_stack(ver):
     print("\n{0} {1} ({2}) {3}".format(platform.system(), platform.release(),
                                      platform.version(), platform.machine()))
     print("Python {0}".format(sys.version))
-    print("NumPy {0:s} Pandas {1:s} FAME HLI {2:.5f} pyhli {3:s}".format(
+    print("NumPy {0:s} Pandas {1:s} FAME HLI {2:.5f} pyhli {3:s} qoma-smuggler {4:s}".format(
         pkg_resources.get_distribution("numpy").version,
-        pkg_resources.get_distribution("pandas").version, ver[0],
-        pkg_resources.get_distribution("pyhli").version))
+        pkg_resources.get_distribution("pandas").version, 
+        ver[0],
+        pkg_resources.get_distribution("pyhli").version,
+        pkg_resources.get_distribution("qoma-smuggler").version))
 
 
 def print_catalog(famedata):
@@ -181,10 +183,10 @@ def meta_to_string(container, key):
                         rng_string)
             famedesc = fameinfo.get('desc', None)
             if not famedesc is None and famedesc:
-                meta = "{0} -- {1}".format(meta, famedesc)
+                meta = "{0}\n{1}".format(meta, famedesc)
             famedocu = fameinfo.get('docu', None)
             if not famedocu is None and famedocu:
-                meta = "{0}\n{1}\n".format(meta, famedocu)
+                meta = "{0}\n-- documentation:\n{1}\n--\n".format(meta, famedocu)
             else:
                 meta = "{0}\n".format(meta)
     return meta
